@@ -1,0 +1,25 @@
+port: /dev/ttyUSB0
+baud: 1000000
+rate: 100
+sync_write: True
+sync_read: False
+read_rate: 20
+write_rate: 20
+
+
+joints: {
+    joint_lift:    {id: 1, neutral: 512},
+    joint_waist:   {id: 2, neutral: 512, min_angle: -60,  max_angle: 60},
+    joint_big_arm: {id: 3, neutral: 512, min_angle: -110, max_angle: 80},
+    joint_forearm: {id: 4, neutral: 512, min_angle: -128, max_angle: 128},
+    joint_wrist_pitching: {id: 5, neutral: 512},
+    joint_wrist_rotation: {id: 6, neutral: 512},
+    joint_finger_right:   {id: 7, neutral: 512},
+}
+
+controllers: {
+    right_arm_controller: {
+    action_name: xm_arm_controller/follow_joint_trajectory,
+    type: follow_controller,
+    joints: [joint_lift, joint_waist, joint_big_arm, joint_forearm, joint_wrist_pitching, joint_wrist_rotation]}
+}
